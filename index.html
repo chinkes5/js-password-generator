@@ -1,10 +1,25 @@
 <html>
+
 <body>
-    <h1>
+    <h1>Password generator</h1>
+    <p>There are many password generators out there but this is my take on it. In the vein of the XKCD recommendation on
+        entropy, I'm using a list of English words, a symbol, and a number to make a password. There are two options for
+        English words, 5 letter and 6 letter. You can pick your own capitalization as you desire.</p>
+    <p>Here is a sample password:</p>
+    <h2>
         <div id="password"></div>
-    </h1>
+    </h2>
+    <p>The source code for this is freely available in javascript, just view source on this page to see what I am doing.
+    </p>
+    <p>There is api access for this with options:-<br />
+        <ul>
+            <li><a href="https://passwords.chinkes.workers.dev/password">5 letter words</li>
+            <li><a href="https://passwords.chinkes.workers.dev/longpassword">6 letter words</li>
+        </ul>
+    </p>
 </body>
 <script src="5-letter.js"></script>
 <script src="6-letters.js"></script>
 <script src="make-password.js"></script>
+
 </html>
