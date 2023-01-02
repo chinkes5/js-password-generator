@@ -1,6 +1,6 @@
 const symbols = ["!", "@", "#", "$", "%", "^", "&", "(", ")"];
 
-/*function makePassword(longerWords = false, wordCount = 2, noSymbol = false, noNumber = false) {
+function makePassword(longerWords = false, wordCount = 2, noSymbol = false, noNumber = false) {
     //some checks on how many words requested
     if (isNaN(wordCount)) {
         throw "No number passed for word count!"
@@ -42,17 +42,19 @@ const symbols = ["!", "@", "#", "$", "%", "^", "&", "(", ")"];
 
     //mix up the array and return as one string
     return passArray.sort(function () { return 0.5 - Math.random() }).join('');
-}*/
+}
 
-// document.getElementById("password").innerHTML = makePassword()
+document.getElementById("password").innerHTML = makePassword()
+/*
 const password = async () => {
     let response = await fetch("https://passwords.chinkes.workers.dev/password", {
         headers: {
             'Content-Type': 'application/json',
-            'Origin': window.location.origin+window.location.host
+            'Origin': window.location.origin
           }
     })
     .then(response => response.text())
     // let myJson = await response.json();
 }
 document.getElementById("password").innerHTML = password().then
+*/
