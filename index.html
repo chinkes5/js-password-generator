@@ -6,19 +6,24 @@
         width: 700px;
         margin: 25px;
     }
+
     h6 {
         font-size: x-small;
     }
+
     #logo {
         align-items: baseline;
         display: flex;
     }
+
     #logo img {
         float: left;
     }
+
     #main {
         clear: both;
     }
+
     #password {
         width: 80%;
         font-family: 'Courier New', Courier, monospace;
@@ -28,25 +33,34 @@
         padding: 10px;
     }
 </style>
+
 <body>
-    <div id="logo"><img src="https://www.chinkes.com/wp-content/uploads/2014/01/cropped-Icon_512x512.png" width="128" /><h1>Password Generator</h1></div>
+    <div id="logo"><img src="https://www.chinkes.com/wp-content/uploads/2014/01/cropped-Icon_512x512.png" width="128" />
+        <h1>Password Generator</h1>
+    </div>
     <div id="main">
-    <p>There are many password generators out there but this is my take on it. In the vein of the XKCD recommendation on
-        entropy, I'm using a list of English words, a symbol, and a number to make a password. There are two options for
-        English words, 5 letter and 6 letter. You can pick your own capitalization as you desire.</p>
-    <p>Here is a sample password:</p>
-    <h2>
-        <div id="password"></div>
-    </h2>
-    <p>The source code for this is freely available in javascript, just view source on this page to see what I am doing.
-    </p>
-    <p>There is api access for this with options:-<br />
-        <ul>
-            <li><a href="https://passwords.chinkes.workers.dev/password">5 letter words</li>
-            <li><a href="https://passwords.chinkes.workers.dev/longpassword">6 letter words</li>
-        </ul>
-    </p>
-    <h6>© 2023 John Edward Max Chinkes</h6></div>
+        <p>There are many password generators out there but this is my take on it. In the vein of the XKCD
+            recommendation on
+            entropy, I'm using a list of English words, a symbol, and a number to make a password. There are two options
+            for
+            English words, 5 letter and 6 letter. You can pick your own capitalization as you desire.</p>
+        <p>Here is a sample password:</p>
+        <h2>
+            <div id="password"></div>
+        </h2>
+        <p>The source code for this is freely available in javascript, just view source on this page to see what I am
+            doing.
+        </p>
+        <p>There is api access for this with options:-<br />
+            <ul>
+                <li><a href="https://passwords.chinkes.workers.dev/password">5 letter words</li>
+                <li><a href="https://passwords.chinkes.workers.dev/longpassword">6 letter words</li>
+                <li><a href="https://passwords.chinkes.workers.dev/noNumber/3">No number and 3 words</li>
+                <li><a href="https://passwords.chinkes.workers.dev/noSymbol/6">No symbol and 6 words</li>
+            </ul>
+        </p>
+        <h6>© 2023 John Edward Max Chinkes</h6>
+    </div>
 </body>
 <script src="5-letter.js"></script>
 <script src="6-letters.js"></script>
