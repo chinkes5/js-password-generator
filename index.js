@@ -46,12 +46,17 @@ function makePassword(letterCount = 12, noSymbol = false, noNumber = false) {
     switch (passCount) {
       case 1:
         //add a check if no symbols
-        passArray.push(symbols[Math.floor(Math.random() * symbols.length)]);
+        if (noSymbol == false) {
+          passArray.push(symbols[Math.floor(Math.random() * symbols.length)]);
+        }
+        else{
+          // either a symbol or single digit number
+          passArray.push(Math.random() < 0.5 ? symbols[Math.floor(Math.random() * symbols.length)] : Math.floor(Math.random() * 9));
+        }
         break;
       case 2:
-        //how do I get only 2 digit numbers?
-        //what if noNumbers?
-        passArray.push(Math.floor(Math.random() * 99));
+        //make 2 digit numbers by swapping to string and forcing 2 digits adding leading zero if needed
+        passArray.push(Math.floor(Math.random() * 99).toString().padStart(2,'0'));
         break
       case 3:
         passArray.push(threeLetter[Math.floor(Math.random() * threeLetter.length)].value);
