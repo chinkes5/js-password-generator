@@ -12,7 +12,7 @@ const symbols = ["!", "@", "#", "$", "%", "^", "&", "(", ")"];
 //   }
 // }
 
-function makePassword(letterCount = 12, noSymbol = false, noNumber = false) {
+function makePassword(letterCount = 12, noSymbol, noNumber) {
   //some checks on how many letters requested
   if (isNaN(letterCount)) {
     throw "No number passed for letter count!"
@@ -45,18 +45,24 @@ function makePassword(letterCount = 12, noSymbol = false, noNumber = false) {
   do {
     switch (passCount) {
       case 1:
-        //add a check if no symbols
-        if (noSymbol == false) {
+        // Add a check for noSymbol and noNumber
+        if (noSymbol == false && noNumber == false) {
+          // Add both a random symbol and a random single-digit number
           passArray.push(symbols[Math.floor(Math.random() * symbols.length)]);
-        }
-        else{
-          // either a symbol or single digit number
-          passArray.push(Math.random() < 0.5 ? symbols[Math.floor(Math.random() * symbols.length)] : Math.floor(Math.random() * 9));
-        }
+          passArray.push(Math.floor(Math.random() * 9));
+        } else {
+          // Add either a random symbol or a random single-digit number based on the conditions
+          if (noSymbol == false) {
+            passArray.push(symbols[Math.floor(Math.random() * symbols.length)]);
+          }
+          if (noNumber == false) {
+            passArray.push(Math.floor(Math.random() * 9));
+          }
+        } 
         break;
       case 2:
         //make 2 digit numbers by swapping to string and forcing 2 digits adding leading zero if needed
-        passArray.push(Math.floor(Math.random() * 99).toString().padStart(2,'0'));
+        passArray.push(Math.floor(Math.random() * 100).toString().padStart(2, '0'));
         break
       case 3:
         passArray.push(threeLetter[Math.floor(Math.random() * threeLetter.length)].value);
