@@ -12,7 +12,7 @@ const symbols = ["!", "@", "#", "$", "%", "^", "&", "(", ")"];
 //   }
 // }
 
-function makePassword(letterCount = 12, noSymbol, noNumber) {
+function makePassword(letterCount = 12, noSymbol = false, noNumber = false) {
   //some checks on how many letters requested
   if (isNaN(letterCount)) {
     throw "No number passed for letter count!"
@@ -28,37 +28,41 @@ function makePassword(letterCount = 12, noSymbol, noNumber) {
   }
 
   //had to make the array outside of conditions for some reason
-  const passArray = [Math.floor(Math.random() * 99)];
+  //starting with some words and then checking how much more to add
+  const passArray = [fiveLetter[Math.floor(Math.random() * fiveLetter.length)].value];
   passArray.push(sixLetter[Math.floor(Math.random() * sixLetter.length)].value);
-  passArray.push(fiveLetter[Math.floor(Math.random() * fiveLetter.length)].value);
-  if (noNumber == true) {
-    //testing for true so I can remove the number
-    passArray.pop();
+
+  if (noNumber == false) {
+    //testing for false so I can add the number to the array
+    passArray.push(Math.floor(Math.random() * 10));
   }
 
   if (noSymbol == false) {
-    //testing for false so I can add to the array with a symbol
+    //testing for false so I can add a symbol to the array
     passArray.push(symbols[Math.floor(Math.random() * symbols.length)]);
   }
 
   let passCount = letterCount - passArray.reduce((a, obj) => a + Object.keys(obj).length, 0);
   do {
+    //loop until we have enough letters to match letterCount
     switch (passCount) {
       case 1:
         // Add a check for noSymbol and noNumber
         if (noSymbol == false && noNumber == false) {
           // Add both a random symbol and a random single-digit number
           passArray.push(symbols[Math.floor(Math.random() * symbols.length)]);
-          passArray.push(Math.floor(Math.random() * 9));
+          passArray.push(Math.floor(Math.random() * 10));
         } else {
           // Add either a random symbol or a random single-digit number based on the conditions
           if (noSymbol == false) {
             passArray.push(symbols[Math.floor(Math.random() * symbols.length)]);
           }
-          if (noNumber == false) {
-            passArray.push(Math.floor(Math.random() * 9));
+          else if (noNumber == false) {
+            passArray.push(Math.floor(Math.random() * 10));
+          } else {
+            passArray.push('B');
           }
-        } 
+        }
         break;
       case 2:
         //make 2 digit numbers by swapping to string and forcing 2 digits adding leading zero if needed
@@ -73,12 +77,13 @@ function makePassword(letterCount = 12, noSymbol, noNumber) {
       case 5:
         passArray.push(fiveLetter[Math.floor(Math.random() * fiveLetter.length)].value);
         break
-      default:
+      case 6:
         passArray.push(sixLetter[Math.floor(Math.random() * sixLetter.length)].value);
-        //loop around again and see how many are still missing from the desired length
+      default:
         break;
     }
     passCount = letterCount - passArray.reduce((a, obj) => a + Object.keys(obj).length, 0);
+    //loop around again and see how many are still missing from the desired length
   } while (passCount > 0);
   //mix up the array and return as one string
   return passArray.sort(function () { return 0.5 - Math.random() }).join('');
