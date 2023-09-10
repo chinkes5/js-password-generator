@@ -45,7 +45,7 @@
             can turn off the symbols or numbers. Use the slider to adjust the length of the password. You can pick your
             own capitalization as you desire.</p>
         <div id="slider" style="width: 30%;"></div>
-        <label for='slider'>Password Length</label><br /><br />
+        <label for='slider' id="sliderLabel">Password Length</label><br /><br />
         <input type="checkbox" id="noSymbol" />
         <label for="noSymbol">Disable Symbols</label><br />
         <input type="checkbox" id="noNumber" />
@@ -98,6 +98,7 @@
         // Generate a new password
         var password = makePassword(value, noSymbol, noNumber);
         document.getElementById("password").innerHTML += password + "<br/>";
+        document.getElementById("sliderLabel").innerHTML = "Password Length: " + value;
     });
 
     // Add event listeners to checkboxes
