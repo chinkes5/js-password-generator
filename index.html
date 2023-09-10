@@ -80,35 +80,23 @@
 
     // Event listener for checkbox changes
     function handleCheckboxChange() {
-        console.log("Checkbox change event triggered");
-
         var value = slider.noUiSlider.get();
         var noSymbol = checkbox1.checked;
         var noNumber = checkbox2.checked;
-        console.log("Slider value:", value);
-        console.log("No symbol checkbox:", noSymbol);
-        console.log("No number checkbox:", noNumber);
 
         // Generate a new password
         var password = makePassword(value, noSymbol, noNumber);
-        console.log("Generated password:", password);
         document.getElementById("password").innerHTML += password + "<br/>";
     }
 
     // Update password on slider change
     slider.noUiSlider.on('update', function (values, handle) {
-        console.log("Slider update event triggered");
-
         var value = values[handle];
         var noSymbol = checkbox1.checked;
         var noNumber = checkbox2.checked;
-        console.log("Slider value:", value);
-        console.log("No symbol checkbox:", noSymbol);
-        console.log("No number checkbox:", noNumber);
 
         // Generate a new password
         var password = makePassword(value, noSymbol, noNumber);
-        console.log("Generated password:", password);
         document.getElementById("password").innerHTML += password + "<br/>";
     });
 

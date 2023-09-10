@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<style>
+    body {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: large;
+        width: 700px;
+        margin: 25px;
+    }
+
+    #password {
+        width: 80%;
+        font-family: 'Courier New', Courier, monospace;
+        background-color: gray;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+    }
+</style>
+
+<body>
+
+    <h1>Testing password by length</h1>
+    <p>This is a test of the password generator to see if I can enter different lengths and get strings of different
+        lengths.</p>
+    <div id="slider" style="width: 30%;"></div>
+    <label for='slider'>Password Length</label><br /><br />
+    <input type="checkbox" id="noSymbol" />
+    <label for="noSymbol">Disable Symbols</label><br />
+    <input type="checkbox" id="noNumber" />
+    <label for="noNumber">Disable Numbers</label>
+    <div id="password"></div>
+    <script src="js-password-generator/index.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"></script>
+    <script>
+        // Initialize the slider
+        var slider = document.getElementById('slider');
+        noUiSlider.create(slider, {
+            start: 12,
+            range: {
+                min: 12,
+                max: 40
+            },
+            step: 1
+        });
+
+        var checkbox1 = document.getElementById('noSymbol');
+        var checkbox2 = document.getElementById('noNumber');
+
+        // Event listener for checkbox changes
+        function handleCheckboxChange() {
+            var value = slider.noUiSlider.get();
+            var noSymbol = checkbox1.checked;
+            var noNumber = checkbox2.checked;
+
+            // Generate a new password
+            var password = makePassword(value, noSymbol, noNumber);
+            document.getElementById("password").innerHTML += password + "<br/>";
+        }
+
+        // Update password on slider change
+        slider.noUiSlider.on('update', function (values, handle) {
+            var value = values[handle];
+            var noSymbol = checkbox1.checked;
+            var noNumber = checkbox2.checked;
+
+            // Generate a new password
+            var password = makePassword(value, noSymbol, noNumber);
+            document.getElementById("password").innerHTML += password + "<br/>";
+        });
+
+        // Add event listeners to checkboxes
+        checkbox1.addEventListener('change', handleCheckboxChange);
+        checkbox2.addEventListener('change', handleCheckboxChange);    
+    </script>
+</body>
+
+</html>
