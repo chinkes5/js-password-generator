@@ -98,7 +98,7 @@
         // Generate a new password
         var password = makePassword(value, noSymbol, noNumber);
         document.getElementById("password").innerHTML += password + "<br/>";
-        document.getElementById("sliderLabel").innerHTML = "Password Length: " + value;
+        document.getElementById("sliderLabel").innerHTML = "Password Length: " + Math.floor(value);
     });
 
     // Add event listeners to checkboxes
