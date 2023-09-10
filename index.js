@@ -31,7 +31,6 @@ function makePassword(letterCount = 12, noSymbol = false, noNumber = false) {
   //had to make the array outside of conditions for some reason
   //starting with some words and then checking how much more to add
   const passArray = [fiveLetter[Math.floor(Math.random() * fiveLetter.length)]];
-  passArray.push(sixLetter[Math.floor(Math.random() * sixLetter.length)]);
 
   if (noNumber == false) {
     //testing for false so I can add the number to the array
