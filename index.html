@@ -3,7 +3,7 @@
     body {
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         font-size: large;
-        width: 700px;
+        width: 800px;
         margin: 25px;
     }
 
@@ -86,7 +86,8 @@
 
         // Generate a new password
         var password = makePassword(value, noSymbol, noNumber);
-        document.getElementById("password").innerHTML += password + "<br/>";
+        // document.getElementById("password").innerHTML += password + "<br/>";
+        document.getElementById("password").innerHTML = password;
     }
 
     // Update password on slider change
@@ -97,7 +98,8 @@
 
         // Generate a new password
         var password = makePassword(value, noSymbol, noNumber);
-        document.getElementById("password").innerHTML += password + "<br/>";
+        // document.getElementById("password").innerHTML += password + "<br/>";
+        document.getElementById("password").innerHTML = password;
         document.getElementById("sliderLabel").innerHTML = "Password Length: " + Math.floor(value);
     });
 
