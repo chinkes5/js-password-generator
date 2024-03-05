@@ -89,6 +89,7 @@ function makePassword(letterCount = 12, noSymbol = false, noNumber = false) {
         passArray.push(nineLetter[Math.floor(Math.random() * nineLetter.length)]);
         break; 
       default:
+        // if anything over 9 is requested, add a random letter
         if (passCount > 9) {
           passArray.push(nineLetter[Math.floor(Math.random() * nineLetter.length)]);
         }
