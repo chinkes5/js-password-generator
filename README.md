@@ -2,7 +2,7 @@
 A javascript password generator
 
 #TODO List
-- Get words from EFF (Electronic Frontier Foundation) Diceware Wordlists
+- Get words from [EFF (Electronic Frontier Foundation) Diceware Wordlists](https://www.eff.org/dice)
 - Use crypto.getRandomValues() from browser, fail if missing
 - Add a small UI element that calculates the bits of entropy based on the pool size and the number of elements chosen: $E = \log_2(R^L)$ where $R$ is the pool size and $L$ is the length/number of words. _> 60 is good_
 - Use length slider as floor rather than ceiling to get more entropy

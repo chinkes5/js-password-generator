@@ -41,7 +41,9 @@
     </div>
     <div id="main">
         <p>There are many password generators out there but this is my take on it. In the vein of the XKCD
-            recommendation on entropy, I'm using a list of English words, a symbol, and a number to make a password. You
+            recommendation on entropy, I'm using a list of English words (from the <a
+                href="https://www.eff.org/dice">Electronic Frontier Foundation</a>), a symbol, and a number to make a
+            password. You
             can turn off the symbols or numbers. Use the slider to adjust the length of the password. You can pick your
             own capitalization as you desire.</p>
         <div id="slider" style="width: 30%;"></div>
@@ -54,12 +56,14 @@
         <h2>
             <div id="password"></div>
         </h2>
+        <p>Entropy is measured as: <span id="entropy"></span></p>
         <p>The source code for this is freely available in javascript, just view source on this page to see what I am
             doing.
         </p>
         <h6>© 2023 John Edward Max Chinkes</h6>
     </div>
 </body>
+<script src="wordlists.js"></script>
 <script src="index.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"></script>
@@ -78,6 +82,17 @@
     var checkbox1 = document.getElementById('noSymbol');
     var checkbox2 = document.getElementById('noNumber');
 
+    function getStrength(entropy) {
+        if (entropy < 60) return " (Weak)";
+        if (entropy < 100) return " (Strong)";
+        return " (Excellent)";
+    }
+
+    function updateUI(passObj) {
+        document.getElementById("password").textContent = passObj.password;
+        document.getElementById("entropy").innerHTML = passObj.entropy + " bits" + getStrength(passObj.entropy);
+    }
+
     // Event listener for checkbox changes
     function handleCheckboxChange() {
         var value = slider.noUiSlider.get();
@@ -85,9 +100,8 @@
         var noNumber = checkbox2.checked;
 
         // Generate a new password
-        var password = makePassword(value, noSymbol, noNumber);
-        // document.getElementById("password").innerHTML += password + "<br/>";
-        document.getElementById("password").innerHTML = password;
+        var result = makePassword(value, noSymbol, noNumber);
+        updateUI(result);
     }
 
     // Update password on slider change
@@ -97,15 +111,14 @@
         var noNumber = checkbox2.checked;
 
         // Generate a new password
-        var password = makePassword(value, noSymbol, noNumber);
-        // document.getElementById("password").innerHTML += password + "<br/>";
-        document.getElementById("password").innerHTML = password;
+        var result = makePassword(value, noSymbol, noNumber);
+        updateUI(result);
         document.getElementById("sliderLabel").innerHTML = "Password Length: " + Math.floor(value);
     });
 
     // Add event listeners to checkboxes
     checkbox1.addEventListener('change', handleCheckboxChange);
-    checkbox2.addEventListener('change', handleCheckboxChange);    
+    checkbox2.addEventListener('change', handleCheckboxChange);
 </script>
 
 </html>
